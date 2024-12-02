@@ -3,6 +3,7 @@
   "rules": {
     "react/no-unescaped-entities": "off",
     "no-var": "error",
-    "no-unused-vars": "error"
+    "no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }

@@ -1,0 +1,37 @@
+.section-group {
+  @apply my-8;
+}
+
+.section-group .group-title {
+  @apply text-2xl font-bold mb-6;
+}
+
+.section-group.default .group-content {
+  @apply space-y-6;
+}
+
+.section-group.columns .group-content {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.section-group.grid .group-content {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+/* Theme variations */
+:root[data-theme="dark"] .section-group {
+  @apply bg-gray-900 text-white;
+}
+
+:root[data-theme="light"] .section-group {
+  @apply bg-white text-gray-900;
+}
+
+/* Section spacing variations */
+.spacing-compact .section-group {
+  @apply my-4;
+}
+
+.spacing-wide .section-group {
+  @apply my-12;
+}

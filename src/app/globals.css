@@ -4,30 +4,217 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #000000;
+  --primary: #c41e3a;
+  --primary-dark: #a01830;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px; /* Aumentando o tamanho base da fonte */
+  line-height: 1.6; /* Aumentando o espaçamento entre linhas */
 }
 
+/* Estilos para melhor legibilidade */
+.article-text {
+  max-width: 70ch; /* Limita largura do texto para melhor leitura */
+  margin: 0 auto;
+  @apply text-gray-900 leading-relaxed;
+}
+
+.high-contrast-text {
+  color: #000000;
+}
+
+/* Melhorando contraste das citações */
 .elementor-blockquote {
-  margin: 1rem 0;
-  padding: 1rem;
-  border-left: 4px solid #800000;
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  border-left: 6px solid #800000;
   background-color: #f8f8f8;
+  font-size: 1.2rem;
 }
 
 .elementor-blockquote__content {
   font-style: italic;
-  color: #666;
+  color: #333; /* Aumentando contraste */
+}
+
+/* Botões CTA aprimorados para público 50+ */
+.action-button {
+  padding: 1.5rem 2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: 12px;
+  min-height: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  border: 3px solid transparent;
+  overflow: hidden;
+
+  /* Gradiente de fundo mais atraente */
+  background: linear-gradient(135deg, #800000 0%, #990000 100%);
+
+  /* Sombra suave para profundidade */
+  box-shadow: 0 4px 15px rgba(128, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* Animações */
+  animation: pulse 2s infinite;
+  transition: all 0.3s ease;
+  @apply py-4 px-6 text-lg font-bold rounded-lg transition-all;
+  background: var(--primary);
+  color: white;
+}
+
+.action-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(128, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.action-button:active {
+  transform: translateY(1px);
+}
+
+/* Animação de pulso suave */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 15px rgba(128, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(128, 0, 0, 0.4);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(128, 0, 0, 0.2);
+  }
+}
+
+/* Seta indicativa animada */
+.action-button::after {
+  content: "→";
+  position: absolute;
+  right: -20px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.action-button:hover::after {
+  right: 20px;
+  opacity: 1;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 640px) {
+  .action-button {
+    font-size: 1.2rem;
+    padding: 1.2rem 1.5rem;
+  }
+}
+
+/* Header destacado */
+.header-highlight {
+  background-color: #800000;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @apply bg-primary text-white;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  @apply text-2xl font-bold tracking-wide;
+}
+
+/* Estilização da seção de citação simplificada */
+.quote-section {
+  background-color: #f8f8f8;
+  padding: 2rem;
+  border-radius: 1rem;
+  border-left: 6px solid #800000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  @apply bg-gray-50 p-6 rounded-lg border-l-4 border-primary;
+}
+
+.quote-section blockquote {
+  position: relative;
+  padding: 0 1rem;
+}
+
+/* Estilização dos comentários */
+.comments-section {
+  margin-top: 3rem;
+}
+
+.comment-card {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  @apply mb-6 p-4 rounded-lg shadow-sm;
+  background: white;
+  color: black;
+}
+
+.comment-card:hover {
+  transform: translateY(-2px);
+}
+
+.comment-card-highlight {
+  border-left: 4px solid #800000;
+  background-color: #fafafa;
+}
+
+/* Estilização das respostas aos comentários */
+.comment-replies {
+  margin-top: 1rem;
+}
+
+.comment-replies .comment-card {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fafafa;
+}
+
+.comment-replies .comment-card:last-child {
+  margin-bottom: 0;
+}
+
+/* Garantir contraste em todos os textos */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  color: black;
+}
+
+/* Responsividade para comentários */
+@media (max-width: 640px) {
+  .comment-card {
+    padding: 1rem;
+  }
+
+  .comment-card img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .comment-replies {
+    margin-left: 0.5rem;
+  }
+
+  .comment-replies .comment-card {
+    padding: 0.75rem;
+  }
 }

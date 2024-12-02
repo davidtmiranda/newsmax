@@ -1,110 +1,186 @@
+import ClientLayout from "../components/ClientLayout";
+import Comments from "../components/Comments";
+import Header from "../components/Header";
+import MainContent from "../components/MainContent";
+import Sidebar from "../components/Sidebar";
+import { CtaProvider } from "../contexts/CtaContext";
+import { AdvertorialContent } from "../types/advertorial";
+
+const content: AdvertorialContent = {
+  meta: {
+    date: "Atualizado em 8 de janeiro às 09:45h",
+    author: "Dr. Carlos Silva",
+    category: "Saúde e Bem-estar",
+  },
+  ctaUrl: "https://exemplo.com.br/comprar?ref=artigo",
+  settings: {
+    theme: "light",
+    layout: "default",
+    spacing: "normal",
+  },
+  sections: [
+    {
+      type: "header",
+      headline: "Descoberta Revolucionária no Tratamento de Articulações",
+      subheadline: "Nova fórmula natural promete alívio em 7 dias",
+      order: 1,
+    },
+    {
+      type: "group",
+      title: "Benefícios e Resultados",
+      layout: "columns",
+      sections: [
+        {
+          type: "benefits",
+          items: [
+            { text: "Alívio das dores em até 7 dias", icon: "star" },
+            { text: "100% natural e sem contraindicações", icon: "check" },
+          ],
+        },
+        {
+          type: "quote",
+          text: "Em 30 anos de carreira, nunca vi resultados tão impressionantes",
+          author: "Dr. Roberto Mendes",
+          image: "/images/dr-roberto.jpg",
+          highlight: true,
+        },
+      ],
+    },
+    {
+      type: "paragraph",
+      text: "Uma descoberta surpreendente está transformando a vida de milhares de brasileiros que sofrem com dores nas articulações...",
+      style: "normal",
+    },
+    {
+      type: "paragraph",
+      text: "Uma descoberta surpreendente está transformando a vida de milhares de brasileiros que sofrem com dores nas articulações...",
+      style: "quote",
+    },
+    {
+      type: "image",
+      src: "/images/raul.png",
+      alt: "Demonstração do tratamento",
+      caption: "Novo método tem eficácia comprovada por estudos clínicos",
+      position: "center",
+    },
+    {
+      type: "quote",
+      text: "Em 30 anos de carreira, nunca vi resultados tão impressionantes em tão pouco tempo",
+      author: "Dr. Roberto Mendes",
+      image: "/images/dr-roberto.jpg",
+      highlight: true,
+    },
+    {
+      type: "benefits",
+      items: [
+        { text: "Alívio das dores em até 7 dias", icon: "star" },
+        { text: "100% natural e sem contraindicações", icon: "check" },
+        { text: "Aprovado pela ANVISA", icon: "check" },
+        { text: "Resultados comprovados", icon: "star" },
+      ],
+    },
+    {
+      type: "testimonialBlock",
+      title: "Histórias reais de transformação",
+      testimonials: [
+        {
+          quote:
+            "Depois de 5 anos sofrendo com dores, finalmente encontrei uma solução.",
+          author: "Maria Santos",
+          image: "/images/testimonial1.jpg",
+          rating: 5,
+        },
+        {
+          quote: "Voltei a praticar esportes graças a este tratamento.",
+          author: "João Paulo",
+          image: "/images/testimonial2.jpg",
+          rating: 5,
+        },
+      ],
+    },
+    {
+      type: "cta",
+      text: "QUERO EXPERIMENTAR AGORA",
+      url: "https://exemplo.com.br/comprar?ref=artigo",
+      style: "primary",
+      size: "large",
+    },
+  ],
+  sidebar: {
+    position: "right",
+    width: "narrow",
+    sections: [
+      {
+        type: "infoBox",
+        title: "Benefícios Comprovados",
+        items: [
+          "✓ Alívio imediato das dores",
+          "✓ Regeneração natural",
+          "✓ Sem efeitos colaterais",
+          "✓ Resultados duradouros",
+        ],
+      },
+      {
+        type: "productHighlight",
+        image: "/images/product-box.jpg",
+        price: "R$ 197,00",
+        discount: "R$ 97,00",
+        cta: "COMPRAR COM DESCONTO",
+      },
+    ],
+  },
+  comments: {
+    enabled: true,
+    title: "O que nossos clientes dizem",
+    list: [
+      {
+        author: "Ana Oliveira",
+        avatar: "/images/avatar-ana.jpg",
+        date: "2 dias atrás",
+        content:
+          "Comecei a usar há 2 semanas e já sinto uma diferença incrível nas minhas articulações!",
+        likes: 48,
+        replies: [
+          {
+            author: "Dr. Carlos Silva",
+            date: "1 dia atrás",
+            content:
+              "Fico muito feliz em saber, Ana! Continue o tratamento conforme recomendado.",
+          },
+        ],
+      },
+      {
+        author: "Paulo Mendes",
+        avatar: "/images/avatar-paulo.jpg",
+        date: "3 dias atrás",
+        content:
+          "Excelente produto! Recomendo a todos que sofrem com dores nas articulações.",
+        likes: 35,
+      },
+    ],
+    allowNewComments: false,
+  },
+};
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header/Navigation */}
-      <header className="bg-white shadow-sm">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center">
-            <button className="text-gray-500 hover:text-gray-700">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-            <span className="ml-4 text-sm hidden sm:block">MENÚ</span>
-          </div>
-          <div>
-            <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900">
-              G1
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Coluna Principal */}
-          <div className="lg:col-span-2">
-            <article className="prose lg:prose-lg mx-auto">
-              {/* Data e Autor */}
-              <div className="text-sm text-gray-500 mb-4">
-                Por Dr. Carlos Mendes – Atualizado em 8 de janeiro às 09:45h
-              </div>
-
-              {/* Citação em destaque */}
-              <blockquote className="elementor-blockquote my-8">
-                <p className="elementor-blockquote__content">
-                  "A descoberta que está revolucionando a saúde cerebral e
-                  memória de milhares de pessoas"
-                </p>
-                <footer>
-                  <cite>Dr. Robert Smith, Neurocientista</cite>
-                </footer>
-              </blockquote>
-
-              {/* Título Principal */}
-              <h1 className="text-3xl font-bold text-primary mb-6">
-                Cientistas descobrem fórmula natural que melhora memória e foco
-                em 89% dos pacientes
-              </h1>
-
-              {/* Conteúdo inicial */}
-              <p className="mb-4">
-                Uma descoberta revolucionária no campo da neurociência está
-                ajudando milhares de pessoas a recuperarem sua memória e clareza
-                mental. O estudo, publicado no Journal of Neuroscience, revelou
-                que uma combinação específica de nutrientes naturais pode
-                melhorar significativamente a função cerebral...
-              </p>
-
-              {/* Imagem Principal */}
-              <div className="my-8">
-                <img
-                  src="/images/brain-health.jpg"
-                  alt="Pesquisa em neurociência"
-                  className="w-full rounded-lg shadow-lg"
-                />
-                <p className="text-sm text-gray-500 mt-2 text-center">
-                  Cientistas durante pesquisa no laboratório de neurociência
-                </p>
-              </div>
-
-              {/* Seções de Conteúdo */}
-              <h2 className="text-2xl font-bold text-primary mt-8">
-                Como esta descoberta está mudando vidas
-              </h2>
-
-              <p className="mt-4">
-                Os resultados são impressionantes: 89% dos participantes do
-                estudo relataram melhora significativa na memória, concentração
-                e clareza mental em apenas 3 semanas...
-              </p>
-            </article>
-          </div>
-
-          {/* Sidebar com informações relacionadas */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-4 bg-gray-50 p-6 rounded-lg">
-              <h2 className="text-xl font-bold mb-4">Destaques da Pesquisa</h2>
-              <ul className="space-y-4">
-                <li>✓ Melhora da memória em 89% dos casos</li>
-                <li>✓ Aumento do foco e concentração</li>
-                <li>✓ Proteção contra declínio cognitivo</li>
-                <li>✓ 100% natural e sem efeitos colaterais</li>
-              </ul>
+    <CtaProvider ctaUrl={content.ctaUrl}>
+      <ClientLayout>
+        <Header />
+        <main className="max-w-5xl mx-auto px-6 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <MainContent content={content} />
             </div>
-          </aside>
-        </div>
-      </main>
-    </div>
+            <Sidebar
+              sections={content.sidebar?.sections}
+              position={content.sidebar?.position}
+              width={content.sidebar?.width}
+            />
+          </div>
+          <Comments comments={content.comments} />
+        </main>
+      </ClientLayout>
+    </CtaProvider>
   );
 }
