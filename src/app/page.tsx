@@ -1,24 +1,37 @@
-import ClientLayout from "../components/ClientLayout";
-import Comments from "../components/Comments";
-import Header from "../components/Header";
-import MainContent from "../components/MainContent";
-import Sidebar from "../components/Sidebar";
-import { CtaProvider } from "../contexts/CtaContext";
-import { AdvertorialContent } from "../types/advertorial";
+// Importando os componentes necessários para construir a página
+// Pense nestes imports como peças de LEGO que vamos usar para montar nossa página
+import ClientLayout from "../components/ClientLayout"; // Layout base da página
+import Comments from "../components/Comments"; // Seção de comentários
+import Header from "../components/Header"; // Cabeçalho da página
+import MainContent from "../components/MainContent"; // Conteúdo principal
+import Sidebar from "../components/Sidebar"; // Barra lateral
+import { CtaProvider } from "../contexts/CtaContext"; // Gerenciador dos botões de ação
+import { AdvertorialContent } from "../types/advertorial"; // Define a estrutura do conteúdo
 
+// Aqui começamos a definir todo o conteúdo da página
+// Este é o local onde você vai fazer a maioria das suas edições
 const content: AdvertorialContent = {
+  // Informações básicas sobre o artigo
   meta: {
-    date: "Atualizado em 8 de janeiro às 09:45h",
-    author: "Dr. Carlos Silva",
-    category: "Saúde e Bem-estar",
+    date: "Atualizado em 8 de janeiro às 09:45h", // Data de atualização
+    author: "Dr. Carlos Silva", // Nome do autor
+    category: "Saúde e Bem-estar", // Categoria do artigo
   },
+
+  // Link para onde o botão de compra vai direcionar
   ctaUrl: "https://exemplo.com.br/comprar?ref=artigo",
+
+  // Configurações de aparência da página
   settings: {
-    theme: "light",
-    layout: "default",
-    spacing: "normal",
+    theme: "light", // Tema claro
+    layout: "default", // Layout padrão
+    spacing: "normal", // Espaçamento normal
   },
+
+  // Lista de todas as seções do conteúdo principal
+  // Cada seção é um bloco diferente de conteúdo
   sections: [
+    // Seção do cabeçalho principal
     {
       type: "header",
       headline: "Descoberta Revolucionária no Tratamento de Articulações",
@@ -130,17 +143,18 @@ const content: AdvertorialContent = {
     ],
   },
   comments: {
-    enabled: true,
-    title: "O que nossos clientes dizem",
+    enabled: true, // Ativa a seção de comentários
+    title: "O que nossos clientes dizem", // Título da seção
     list: [
       {
-        author: "Ana Oliveira",
-        avatar: "/images/avatar-ana.jpg",
-        date: "2 dias atrás",
+        author: "Ana Oliveira", // Nome do autor do comentário
+        avatar: "/images/avatar-ana.jpg", // Foto do autor
+        date: "2 dias atrás", // Data do comentário
         content:
           "Comecei a usar há 2 semanas e já sinto uma diferença incrível nas minhas articulações!",
-        likes: 48,
+        likes: 48, // Número de curtidas
         replies: [
+          // Respostas ao comentário
           {
             author: "Dr. Carlos Silva",
             date: "1 dia atrás",
@@ -158,26 +172,39 @@ const content: AdvertorialContent = {
         likes: 35,
       },
     ],
-    allowNewComments: false,
+    allowNewComments: false, // Desativa a criação de novos comentários
   },
 };
 
+// Esta é a função principal que monta toda a página
+// Você não precisa mexer aqui a menos que queira mudar a estrutura da página
 export default function Home() {
   return (
+    // CtaProvider gerencia os botões de ação da página
     <CtaProvider ctaUrl={content.ctaUrl}>
+      {/* ClientLayout é o container principal da página */}
       <ClientLayout>
+        {/* Cabeçalho do site */}
         <Header />
+
+        {/* Conteúdo principal da página */}
         <main className="max-w-5xl mx-auto px-6 py-8">
+          {/* Grid que organiza o conteúdo em colunas */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Coluna do conteúdo principal */}
             <div className="lg:col-span-2">
               <MainContent content={content} />
             </div>
+
+            {/* Coluna da barra lateral */}
             <Sidebar
               sections={content.sidebar?.sections}
               position={content.sidebar?.position}
               width={content.sidebar?.width}
             />
           </div>
+
+          {/* Seção de comentários */}
           <Comments comments={content.comments} />
         </main>
       </ClientLayout>
