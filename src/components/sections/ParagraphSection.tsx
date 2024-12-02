@@ -1,3 +1,5 @@
+"use client";
+
 import { useCtaUrl } from "../../contexts/CtaContext";
 import { ParagraphSection as ParagraphSectionType } from "../../types/advertorial";
 
