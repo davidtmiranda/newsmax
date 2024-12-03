@@ -1,3 +1,6 @@
+"use client";
+
+import { useCtaUrl } from "@/contexts/CtaContext";
 import { AdvertorialContent } from "../types/advertorial";
 import SectionRenderer from "./sections/SectionRenderer";
 
@@ -6,6 +9,7 @@ type Props = {
 };
 
 export default function MainContent({ content }: Props) {
+  const { getTrackedUrl } = useCtaUrl();
   const { sections, settings } = content;
 
   // Sort sections by order if specified
@@ -28,12 +32,34 @@ export default function MainContent({ content }: Props) {
     wide: "max-w-4xl mx-auto",
   }[settings?.layout || "default"];
 
+  // Process sections to add tracked URLs
+  const processedSections = sortedSections.map((section) => {
+    if ("url" in section) {
+      return {
+        ...section,
+        url: getTrackedUrl(section.url),
+      };
+    }
+    if ("clickableWords" in section && section.type === "paragraph") {
+      return {
+        ...section,
+        trackedUrl: getTrackedUrl(content.ctaUrl),
+      };
+    }
+    return section;
+  });
+
   return (
     <article className={`article-text ${layoutClass}`}>
       <div className="text-lg text-gray-700 mb-6">{content.meta.date}</div>
       <div className={spacingClass}>
-        {sortedSections.map((section, index) => (
-          <SectionRenderer key={index} section={section} />
+        {processedSections.map((section, index) => (
+          <SectionRenderer
+            key={index}
+            section={section}
+            getTrackedUrl={getTrackedUrl}
+            defaultCtaUrl={content.ctaUrl}
+          />
         ))}
       </div>
     </article>

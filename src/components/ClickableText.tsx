@@ -1,17 +1,24 @@
 "use client";
 
-import { useCtaUrl } from "../../contexts/CtaContext";
-import { ParagraphSection as ParagraphSectionType } from "../../types/advertorial";
+import { useCtaUrl } from "../contexts/CtaContext";
 
-export default function ParagraphSection({
+type ClickableTextProps = {
+  text: string;
+  clickableWords?: string[];
+  url: string;
+  style?: "normal" | "highlight" | "quote";
+};
+
+export default function ClickableText({
   text,
-  style = "normal",
   clickableWords = [],
-}: ParagraphSectionType) {
-  const { ctaUrl } = useCtaUrl();
+  url,
+  style = "normal",
+}: ClickableTextProps) {
+  const { getTrackedUrl } = useCtaUrl();
 
   const styles = {
-    normal: "text-lg text-[#1a1a1a]", // Added text-lg for better readability
+    normal: "text-lg text-[#1a1a1a]",
     highlight: "text-lg font-medium text-primary",
     quote: "text-lg italic text-[#262626]",
   };
@@ -19,20 +26,21 @@ export default function ParagraphSection({
   const renderText = () => {
     let result = text;
 
-    // First handle bold text
+    // Handle bold text
     const boldPattern = /\*\*(.*?)\*\*/g;
     result = result.replace(
       boldPattern,
       '<strong class="font-bold">$1</strong>'
     );
 
-    // Then handle clickable words if they exist
+    // Handle clickable words
     if (clickableWords.length > 0) {
+      const trackedUrl = getTrackedUrl(url);
       clickableWords.forEach((word) => {
         const regex = new RegExp(`(${word})`, "gi");
         result = result.replace(
           regex,
-          `<a href="${ctaUrl}" class="text-red-600 font-extrabold hover:underline">$1</a>`
+          `<a href="${trackedUrl}" class="text-red-600 font-extrabold hover:underline cursor-pointer">$1</a>`
         );
       });
     }
