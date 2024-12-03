@@ -22,6 +22,7 @@ body {
   max-width: 70ch; /* Limita largura do texto para melhor leitura */
   margin: 0 auto;
   @apply text-gray-900 leading-relaxed;
+  color: #1a1a1a; /* Darker text color for better contrast */
 }
 
 .high-contrast-text {
@@ -135,7 +136,7 @@ body {
 /* Estilização da seção de citação simplificada */
 .quote-section {
   background-color: #f8f8f8;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 1rem;
   border-left: 6px solid #800000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -196,7 +197,7 @@ h4,
 h5,
 h6,
 p {
-  color: black;
+  color: #1a1a1a; /* Darker than black for better readability */
 }
 
 /* Responsividade para comentários */

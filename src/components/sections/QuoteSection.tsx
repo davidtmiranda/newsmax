@@ -9,8 +9,10 @@ export default function QuoteSection({
     <div
       className={`quote-section ${highlight ? "border-l-[6px]" : "border-l-4"}`}
     >
-      <blockquote className="text-lg italic mb-3">{text}</blockquote>
-      <cite className="text-gray-600 font-medium block">— {author}</cite>
+      <blockquote className="text-lg italic mb-3 font-bold">{text}</blockquote>
+      {author && (
+        <cite className="text-gray-600 font-medium block">— {author}</cite>
+      )}
     </div>
   );
 }

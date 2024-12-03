@@ -11,22 +11,30 @@ export default function ParagraphSection({
   const { ctaUrl } = useCtaUrl();
 
   const styles = {
-    normal: "text-gray-900",
+    normal: "text-[#1a1a1a]", // Darker than default gray
     highlight: "text-lg font-medium text-primary",
-    quote: "text-lg italic text-gray-700",
+    quote: "text-lg italic text-[#262626]", // Darker gray for quotes
   };
 
   const renderText = () => {
     if (!clickableWords || clickableWords.length === 0) {
-      return text;
+      // Handle bold text between ** markers
+      const boldPattern = /\*\*(.*?)\*\*/g;
+      const textWithBold = text.replace(boldPattern, "<strong>$1</strong>");
+      return <span dangerouslySetInnerHTML={{ __html: textWithBold }} />;
     }
 
     let result = text;
+    // First handle bold text
+    const boldPattern = /\*\*(.*?)\*\*/g;
+    result = result.replace(boldPattern, "<strong>$1</strong>");
+
+    // Then handle clickable words
     clickableWords.forEach((word) => {
       const regex = new RegExp(`(${word})`, "gi");
       result = result.replace(
         regex,
-        `<a href="${ctaUrl}" class="text-blue-600 hover:underline">$1</a>`
+        `<a href="${ctaUrl}" class="text-red-600 font-extrabold hover:underline">$1</a>`
       );
     });
 
