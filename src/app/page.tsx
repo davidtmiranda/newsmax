@@ -34,8 +34,8 @@ const content: AdvertorialContent = {
     // Seção do cabeçalho principal
     {
       type: "header",
-      headline: "Descoberta Revolucionária no Tratamento de Articulações",
-      subheadline: "Nova fórmula natural promete alívio em 7 dias",
+      headline: "Descoberta",
+      subheadline: "Nova fórm",
       order: 1,
     },
     {
@@ -46,8 +46,8 @@ const content: AdvertorialContent = {
         {
           type: "benefits",
           items: [
-            { text: "Alívio das dores em até 7 dias", icon: "star" },
-            { text: "100% natural e sem contraindicações", icon: "check" },
+            { text: "Alívio ds", icon: "star" },
+            { text: "100% natur=cações", icon: "check" },
           ],
         },
         {
