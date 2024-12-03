@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Advertorial Template",
-  description: "A customizable advertorial template",
+  title: "Oficial",
+  description: "",
 };
 
 export default function RootLayout({
